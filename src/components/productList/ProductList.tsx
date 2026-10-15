@@ -1,6 +1,7 @@
 import { useEffect, useId, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import ProductCard from '../productCard/ProductCard'
+import ProductModal from '../productModal/ProductModal'
 import { getProducts } from '../../services/api'
 import type { Product } from '../../types/product'
 import './ProductList.scss'
@@ -17,6 +18,7 @@ function ProductList({ title, tabs, viewAllHref, flat = false }: ProductListProp
   const [products, setProducts] = useState<Product[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
 
   useEffect(() => {
     let active = true
@@ -86,7 +88,7 @@ function ProductList({ title, tabs, viewAllHref, flat = false }: ProductListProp
           <ul className="product-list__items">
             {products.map((product) => (
               <li key={product.id}>
-                <ProductCard product={product} />
+                <ProductCard product={product} onSelect={setSelectedProduct} />
               </li>
             ))}
           </ul>
@@ -100,6 +102,14 @@ function ProductList({ title, tabs, viewAllHref, flat = false }: ProductListProp
           </button>
         </div>
       )}
+
+      {selectedProduct && (
+        <ProductModal
+          product={selectedProduct}
+          onClose={() => setSelectedProduct(null)}
+        />
+      )}
+
     </section>
   )
 }

@@ -14,6 +14,10 @@ $card-space: 12px;
     list-style: none;
   }
 
+  &.container {
+    padding-block: 40px 80px;
+  }
+
   &__title {
     display: flex;
     align-items: center;
@@ -90,18 +94,19 @@ $card-space: 12px;
     }
   }
 
+
   &__carousel {
     position: relative;
-    margin-top: 20px;
+    margin-top: 32px; // espaço entre "Ver todos" e os cards
   }
 
   &__items {
-    --visible: 5;
+    --visible: 4;
 
     display: grid;
     grid-auto-flow: column;
     grid-auto-columns: calc(100% / var(--visible));
-    gap: 0; 
+    gap: 0;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
@@ -170,6 +175,10 @@ $card-space: 12px;
   }
 
   @media (max-width: 600px) {
+    &.container {
+      padding-block: 32px 48px;
+    }
+
     &__items {
       --visible: 1;
     }

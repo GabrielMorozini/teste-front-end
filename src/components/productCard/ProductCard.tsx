@@ -3,6 +3,7 @@ import './ProductCard.scss'
 
 interface ProductCardProps {
   product: Product
+  onSelect: (product: Product) => void
 }
 
 const INSTALLMENTS = 2
@@ -10,7 +11,7 @@ const INSTALLMENTS = 2
 const formatPrice = (value: number) =>
   value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
-function ProductCard({ product }: ProductCardProps) {
+function ProductCard({ product, onSelect }: ProductCardProps) {
   const { productName, descriptionShort, photo, price } = product
 
   const installmentValue = price / INSTALLMENTS
@@ -21,8 +22,6 @@ function ProductCard({ product }: ProductCardProps) {
         className="product-card__image"
         src={photo}
         alt={productName}
-        width={240}
-        height={240}
         loading="lazy"
       />
 
@@ -38,7 +37,11 @@ function ProductCard({ product }: ProductCardProps) {
         <span className="product-card__shipping">Frete grátis</span>
       </div>
 
-      <button type="button" className="product-card__button">
+      <button
+        type="button"
+        className="product-card__button"
+        onClick={() => onSelect(product)}
+      >
         Comprar
       </button>
     </article>

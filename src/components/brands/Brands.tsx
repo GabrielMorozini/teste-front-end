@@ -24,15 +24,16 @@ function Brands({ title = 'Navegue por marcas', brands }: BrandsProps) {
 
       <ul className="brands__list">
         {brands.map(({ id, name, logo, href = '#' }) => (
-          <li key={id}>
-            <a href={href} className="brands__item" aria-label={name}>
+          <li key={id} className="brands__item">
+            <a href={href} className="brands__link">
               <img
                 className="brands__logo"
                 src={logo}
-                alt=""
+                alt={name}
                 width={110}
                 height={40}
                 loading="lazy"
+                decoding="async"
               />
             </a>
           </li>

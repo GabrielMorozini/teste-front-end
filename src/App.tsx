@@ -19,9 +19,11 @@ function App() {
     <>
       <Header />
       <main>
-          <Hero />
+        <Hero />
         <Categories />
         <ProductList title="Produtos relacionados" tabs={relatedTabs} />
+        <Partners />
+        <ProductList title="Produtos relacionados" viewAllHref="#" flat />
         <Partners />
         <Brands brands={brands} />
         <ProductList title="Produtos relacionados" viewAllHref="#" flat />
